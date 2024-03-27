@@ -3,7 +3,10 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 
 const createDatabase = async () => await MongoMemoryServer.create({
   instance: {
-    port: process.env.DB_PORT || 3123,
+    port:
+        process.env.NODE_ENV === 'test'
+          ? process.env.TEST_DB_PORT ?? 3124
+          : process.env.DB_PORT ?? 3123,
   },
 });
 

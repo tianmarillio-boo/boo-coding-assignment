@@ -10,24 +10,19 @@ const errorHandler = (err, req, res, next) => {
 
   switch (err.name) {
     case 'Unauthorized':
-      res.status(401).json(defineError());
-      break;
+      return res.status(401).json(defineError());
 
     case 'ValidationError':
-      res.status(400).json(defineError());
-      break;
+      return res.status(400).json(defineError());
 
     case 'NotFoundError':
-      res.status(404).json(defineError());
-      break;
+      return res.status(404).json(defineError());
 
     default:
       err.name = 'InternalSeverError';
       err.message = 'Internal sever error';
-      res.status(500).json(defineError());
+      return res.status(500).json(defineError());
   }
-
-  return next(err);
 };
 
 module.exports = errorHandler;

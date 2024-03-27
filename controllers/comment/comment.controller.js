@@ -5,7 +5,7 @@ const createCommentDto = require('./dto/create-comment.dto');
 class CommentController {
   static async create(req, res) {
     const { profileId } = req.params;
-    const { body } = req;
+    const { body, username } = req;
 
     // Sanitize
     createCommentDto.validateSync(body, { strict: true });
@@ -30,6 +30,7 @@ class CommentController {
     // Create comment
     const newComment = await Comment.create({
       id,
+      username,
       ...body,
 
       profile: foundProfile._id,

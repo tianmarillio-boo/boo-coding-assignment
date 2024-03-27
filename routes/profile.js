@@ -27,9 +27,8 @@ module.exports = function () {
   router.post('/', ProfileController.create);
   router.get('/:profileId', ProfileController.findById);
 
-  router.post('/:profileId/comment', CommentController.create);
+  router.post('/:profileId/comment', authentication, CommentController.create);
   router.get('/:profileId/comment', CommentController.findAll);
-
   router.patch(
     '/:profileId/comment/:commentId/toggle-like',
     authentication,

@@ -54,7 +54,6 @@ const ZODIAC_ENUM = [
 ];
 
 const createCommentDto = object({
-  username: string().required(),
   title: string().required(),
   text: string().required(),
 
